@@ -39,3 +39,4 @@ ldrsgroup-484815-ada8606fc844.json
 .pnpm-store/
 .next/
 node_modules/
+.vercel
