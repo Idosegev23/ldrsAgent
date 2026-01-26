@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Test
+coverage/
+
+# Temp
+tmp/
+temp/
+
+.next/
+node_modules/
+ldrsgroup-484815-ada8606fc844.json
+*.json
+ldrsgroup-484815-ada8606fc844.json
+*.json
+.pnpm-store/
+.next/
+node_modules/
