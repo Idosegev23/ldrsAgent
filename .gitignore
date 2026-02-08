@@ -32,11 +32,17 @@ temp/
 
 .next/
 node_modules/
-ldrsgroup-484815-ada8606fc844.json
-*.json
-ldrsgroup-484815-ada8606fc844.json
-*.json
 .pnpm-store/
-.next/
-node_modules/
 .vercel
+
+# Service Account Keys (secrets)
+ldrsgroup-484815-ada8606fc844.json
+*-service-account*.json
+
+# Keep these JSON files
+!package.json
+!package-lock.json
+!pnpm-lock.yaml
+!tsconfig.json
+!vercel.json
+!*.config.json
