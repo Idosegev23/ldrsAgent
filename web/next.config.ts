@@ -5,9 +5,8 @@ const nextConfig: NextConfig = {
   // Fix for multiple lockfiles warning
   outputFileTracingRoot: path.join(__dirname, '../'),
   
-  experimental: {
-    serverComponentsExternalPackages: ['glob', 'googleapis', 'google-auth-library'],
-  },
+  // Modern way to exclude packages from client bundle (Next.js 15+)
+  serverExternalPackages: ['glob', 'googleapis', 'google-auth-library'],
   
   webpack: (config, { isServer }) => {
     if (isServer) {
