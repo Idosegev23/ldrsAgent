@@ -1,16 +1,6 @@
 {
-  "version": 2,
-  "name": "leadrsagents",
-  "builds": [
-    {
-      "src": "web/package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "web/$1"
-    }
-  ]
+  "buildCommand": "cd web && pnpm install && pnpm run build",
+  "outputDirectory": "web/.next",
+  "framework": "nextjs",
+  "installCommand": "cd web && pnpm install"
 }
