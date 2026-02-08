@@ -6,7 +6,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import type { LogEvent } from '@backend/types/orchestration.types';
+import type { LogEvent } from '@/lib/backend/types/orchestration.types';
 
 interface LiveLogsProps {
   logs: LogEvent[];

@@ -5,8 +5,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@/lib/auth-middleware';
-import { getJob } from '@backend/control/job-store';
-import { getJobPendingActions, executeAction, rejectAction } from '@backend/execution/action-executor';
+import { getJob } from '@/lib/backend/control/job-store';
+import { getJobPendingActions, executeAction, rejectAction } from '@/lib/backend/execution/action-executor';
 
 export async function GET(
   request: NextRequest,

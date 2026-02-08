@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getAgentRegistry } from '@backend/execution/agent-registry';
+import { getAgentRegistry } from '@/lib/backend/execution/agent-registry';
 import '@/lib/startup'; // Initialize backend on first API call
 
 export async function GET(request: NextRequest) {

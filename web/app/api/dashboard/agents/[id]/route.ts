@@ -9,7 +9,7 @@ import {
   getAgentStatus, 
   getAgentStats,
   getAgentExecutions 
-} from '@backend/services/agent-monitor';
+} from '@/lib/backend/services/agent-monitor';
 
 export async function GET(
   request: NextRequest,
@@ -99,7 +99,7 @@ export async function POST(
         );
       }
 
-      const { setAgentEnabled } = await import('@backend/services/agent-monitor');
+      const { setAgentEnabled } = await import('@/lib/backend/services/agent-monitor');
 
       if (action === 'enable') {
         await setAgentEnabled(id, true);

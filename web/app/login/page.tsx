@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../contexts/AuthContext';
 import { FaGoogle } from 'react-icons/fa';
 
-export default function LoginPage() {
+function LoginContent() {
   const { isAuthenticated, isLoading, signInWithGoogle } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -29,69 +29,85 @@ export default function LoginPage() {
           setError('ההתחברות נכשלה. אנא נסה שנית');
           break;
         default:
-          setError(authError);
+          setError('אירעה שגיאה. אנא נסה שנית');
       }
     }
   }, [searchParams]);
 
-  const handleGoogleLogin = async () => {
+  const handleGoogleSignIn = async () => {
     try {
-      setSigningIn(true);
       setError(null);
+      setSigningIn(true);
       await signInWithGoogle();
-      // Supabase will redirect automatically
-    } catch (err) {
-      console.error('Google login error:', err);
-      setError('שגיאה בהתחברות. אנא נסה שנית');
+    } catch (err: any) {
+      setError(err.message || 'ההתחברות נכשלה');
+    } finally {
       setSigningIn(false);
     }
   };
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 text-white">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <p>טוען...</p>
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
       </div>
     );
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 text-white p-4">
-      <div className="glass p-8 rounded-2xl shadow-2xl text-center max-w-md w-full backdrop-blur-lg bg-white/10 border border-white/20">
-        <h1 className="text-4xl font-bold mb-3 text-white">Leadrs Agent OS</h1>
-        <p className="text-gray-200 mb-8">מערכת AI רב-סוכנים</p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900 px-4">
+      <div className="max-w-md w-full space-y-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-white mb-2">Leaders Agents</h1>
+          <p className="text-gray-400">מערכת ניהול AI Agents</p>
+        </div>
 
-        {error && (
-          <div className="bg-red-500/20 border border-red-500 text-white p-3 rounded-lg mb-6">
-            {error}
+        <div className="glass rounded-xl p-8 space-y-6">
+          <div className="text-center space-y-2">
+            <h2 className="text-2xl font-bold text-white">התחברות</h2>
+            <p className="text-gray-400 text-sm">השתמש בחשבון Google שלך מ-ldrsgroup.com</p>
           </div>
-        )}
 
-        <button
-          onClick={handleGoogleLogin}
-          disabled={signingIn}
-          className="bg-white hover:bg-gray-100 text-gray-900 font-bold py-4 px-6 rounded-lg flex items-center justify-center w-full transition duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {signingIn ? (
-            <>
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900 ml-3"></div>
-              מתחבר...
-            </>
-          ) : (
-            <>
-              <FaGoogle className="ml-3 text-xl" />
-              התחבר עם Google
-            </>
+          {error && (
+            <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+              <p className="text-red-400 text-sm text-center">{error}</p>
+            </div>
           )}
-        </button>
 
-        <p className="text-gray-300 text-sm mt-6">
-          גישה מוגבלת למשתמשי <span className="font-semibold">ldrsgroup.com</span>
-        </p>
+          <button
+            onClick={handleGoogleSignIn}
+            disabled={signingIn}
+            className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-white hover:bg-gray-100 text-gray-900 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <FaGoogle className="text-xl" />
+            {signingIn ? 'מתחבר...' : 'התחבר עם Google'}
+          </button>
+
+          <div className="pt-4 border-t border-gray-700">
+            <p className="text-gray-500 text-xs text-center">
+              אנא השתמש רק בכתובת email של ldrsgroup.com
+            </p>
+          </div>
+        </div>
+
+        <div className="text-center">
+          <p className="text-gray-500 text-sm">
+            © 2025 Leaders Group. כל הזכויות שמורות
+          </p>
+        </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+      </div>
+    }>
+      <LoginContent />
+    </Suspense>
   );
 }

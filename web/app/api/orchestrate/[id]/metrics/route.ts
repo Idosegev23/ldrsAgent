@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { metricsCollector } from '@backend/orchestration/monitoring/metrics';
+import { metricsCollector } from '@/lib/backend/orchestration/monitoring/metrics';
 
 export async function GET(
   request: NextRequest,

@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '../../../lib/supabase';
 
-export default function AuthCallbackPage() {
+function AuthCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -38,51 +38,35 @@ export default function AuthCallbackPage() {
           return;
         }
 
-        // IMPORTANT: Save Google OAuth tokens for API access
-        // Supabase gives us provider tokens that we can use for Drive/Calendar/Gmail
-        if (session?.provider_token && session?.user?.id) {
-          try {
-            console.log('Saving Google OAuth tokens for user:', session.user.email);
-            
-            // Call our API to save the tokens
-            await fetch('/api/auth/google/save-tokens', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${session.access_token}`
-              },
-              body: JSON.stringify({
-                userId: session.user.id,
-                accessToken: session.provider_token,
-                refreshToken: session.provider_refresh_token,
-                email: session.user.email
-              })
-            });
-            
-            console.log('✅ Google tokens saved successfully');
-          } catch (tokenError) {
-            console.error('Failed to save Google tokens:', tokenError);
-            // Continue anyway - they can connect later
-          }
-        }
-
-        // Success - redirect to dashboard
+        // Redirect to dashboard
         router.push('/dashboard');
-      } else {
-        // No code in URL, redirect to login
-        router.push('/login');
       }
     };
 
     handleCallback();
-  }, [router, searchParams]);
+  }, [searchParams, router]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900">
       <div className="text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-        <p>מאמת התחברות...</p>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500 mx-auto mb-4"></div>
+        <p className="text-white">מתחבר...</p>
       </div>
     </div>
+  );
+}
+
+export default function AuthCallbackPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500 mx-auto mb-4"></div>
+          <p className="text-white">טוען...</p>
+        </div>
+      </div>
+    }>
+      <AuthCallbackContent />
+    </Suspense>
   );
 }

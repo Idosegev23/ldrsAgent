@@ -6,7 +6,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import type { SharedContext } from '@backend/types/orchestration.types';
+import type { SharedContext } from '@/lib/backend/types/orchestration.types';
 
 interface ContextViewerProps {
   context: SharedContext;

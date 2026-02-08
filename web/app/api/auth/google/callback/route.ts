@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { handleOAuthCallback, saveUserTokens } from '@backend/integrations/auth/google-oauth';
+import { handleOAuthCallback, saveUserTokens } from '@/lib/backend/integrations/auth/google-oauth';
 
 export async function GET(request: NextRequest) {
   try {

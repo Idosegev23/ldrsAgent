@@ -4,7 +4,7 @@
  */
 
 import { NextRequest } from 'next/server';
-import { streamManager } from '@backend/orchestration/streaming/stream-manager';
+import { streamManager } from '@/lib/backend/orchestration/streaming/stream-manager';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';

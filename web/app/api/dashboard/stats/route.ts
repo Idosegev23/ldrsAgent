@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@/lib/auth-middleware';
-import { getSystemStats } from '@backend/services/agent-monitor';
+import { getSystemStats } from '@/lib/backend/services/agent-monitor';
 
 export async function GET(request: NextRequest) {
   return requireAuth(request, async () => {

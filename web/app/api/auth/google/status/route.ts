@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getUserGoogleInfo } from '@backend/integrations/auth/google-oauth';
+import { getUserGoogleInfo } from '@/lib/backend/integrations/auth/google-oauth';
 import { getAuthUser } from '@/lib/auth-middleware';
 
 export async function GET(request: NextRequest) {

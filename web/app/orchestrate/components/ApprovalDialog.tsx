@@ -6,7 +6,7 @@
 'use client';
 
 import React from 'react';
-import type { ApprovalRequest } from '@backend/types/orchestration.types';
+import type { ApprovalRequest } from '@/lib/backend/types/orchestration.types';
 
 interface ApprovalDialogProps {
   approvals: ApprovalRequest[];

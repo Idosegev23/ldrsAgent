@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { distributedTracer } from '@backend/orchestration/monitoring/tracer';
+import { distributedTracer } from '@/lib/backend/orchestration/monitoring/tracer';
 
 export async function GET(
   request: NextRequest,

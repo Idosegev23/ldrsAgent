@@ -4,7 +4,7 @@
  */
 
 import { NextResponse } from 'next/server';
-import { getSystemStatus } from '@backend/orchestration/initialize';
+import { getSystemStatus } from '@/lib/backend/orchestration/initialize';
 
 export async function GET() {
   try {

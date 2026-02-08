@@ -6,7 +6,7 @@
 'use client';
 
 import React from 'react';
-import type { Execution } from '@backend/types/orchestration.types';
+import type { Execution } from '@/lib/backend/types/orchestration.types';
 
 interface MetricsDashboardProps {
   execution: Execution;

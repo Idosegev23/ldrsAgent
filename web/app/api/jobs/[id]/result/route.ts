@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@/lib/auth-middleware';
-import { getJob } from '@backend/control/job-store';
+import { getJob } from '@/lib/backend/control/job-store';
 
 export async function GET(
   request: NextRequest,

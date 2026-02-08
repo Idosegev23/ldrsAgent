@@ -3,7 +3,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { masterOrchestrator } from '@backend/orchestration/master-orchestrator';
+import { masterOrchestrator } from '@/lib/backend/orchestration/master-orchestrator';
 
 export async function POST(
   request: NextRequest,

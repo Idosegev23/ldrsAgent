@@ -3,7 +3,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { hitlGate } from '@backend/orchestration/safety/hitl-gates';
+import { hitlGate } from '@/lib/backend/orchestration/safety/hitl-gates';
 
 export async function POST(
   request: NextRequest,

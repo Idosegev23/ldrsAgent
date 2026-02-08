@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getUserCanvaInfo } from '@backend/integrations/auth/canva-oauth';
+import { getUserCanvaInfo } from '@/lib/backend/integrations/auth/canva-oauth';
 import { getAuthUser } from '@/lib/auth-middleware';
 
 export async function GET(request: NextRequest) {

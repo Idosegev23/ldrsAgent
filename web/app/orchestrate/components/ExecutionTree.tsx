@@ -6,7 +6,7 @@
 'use client';
 
 import React from 'react';
-import type { Execution, ExecutionStep } from '@backend/types/orchestration.types';
+import type { Execution, ExecutionStep } from '@/lib/backend/types/orchestration.types';
 
 interface ExecutionTreeProps {
   execution: Execution;

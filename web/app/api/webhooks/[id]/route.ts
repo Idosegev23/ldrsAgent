@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { webhookManager } from '@backend/orchestration/webhooks/webhook-manager';
+import { webhookManager } from '@/lib/backend/orchestration/webhooks/webhook-manager';
 
 export async function PUT(
   request: NextRequest,

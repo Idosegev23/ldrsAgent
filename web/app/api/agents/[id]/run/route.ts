@@ -5,10 +5,10 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@/lib/auth-middleware';
-import { getAgentRegistry } from '@backend/execution/agent-registry';
-import { classifyIntent } from '@backend/control/intent-classifier';
+import { getAgentRegistry } from '@/lib/backend/execution/agent-registry';
+import { classifyIntent } from '@/lib/backend/control/intent-classifier';
 import { v4 as uuidv4 } from 'uuid';
-import type { Job } from '@backend/types/job.types';
+import type { Job } from '@/lib/backend/types/job.types';
 
 export async function POST(
   request: NextRequest,

@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAdmin } from '@/lib/auth-middleware';
-import { checkIntegrationsHealth } from '@backend/services/agent-monitor';
+import { checkIntegrationsHealth } from '@/lib/backend/services/agent-monitor';
 
 export async function GET(request: NextRequest) {
   return requireAdmin(request, async () => {

@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { saveUserTokens } from '@backend/integrations/auth/google-oauth';
+import { saveUserTokens } from '@/lib/backend/integrations/auth/google-oauth';
 import { getAuthUser } from '@/lib/auth-middleware';
 
 export async function POST(request: NextRequest) {

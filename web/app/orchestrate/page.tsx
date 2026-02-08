@@ -13,8 +13,8 @@ import { ActionControls } from './components/ActionControls';
 import { MetricsDashboard } from './components/MetricsDashboard';
 import { ApprovalDialog } from './components/ApprovalDialog';
 import { useExecutionStream } from './hooks/useExecutionStream';
-import type { Execution } from '@backend/types/orchestration.types';
-import type { LogEvent } from '@backend/types/orchestration.types';
+import type { Execution } from '@/lib/backend/types/orchestration.types';
+import type { LogEvent } from '@/lib/backend/types/orchestration.types';
 
 export default function OrchestratePage() {
   const [executionId, setExecutionId] = useState<string | null>(null);

@@ -5,11 +5,11 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@/lib/auth-middleware';
-import { classifyIntent } from '@backend/control/intent-classifier';
-import { orchestrateJob } from '@backend/control/orchestrator';
-import { getJobStore, updateJob, getJob } from '@backend/control/job-store';
+import { classifyIntent } from '@/lib/backend/control/intent-classifier';
+import { orchestrateJob } from '@/lib/backend/control/orchestrator';
+import { getJobStore, updateJob, getJob } from '@/lib/backend/control/job-store';
 import { v4 as uuidv4 } from 'uuid';
-import type { Job, JobStatus } from '@backend/types/job.types';
+import type { Job, JobStatus } from '@/lib/backend/types/job.types';
 
 export async function GET(request: NextRequest) {
   return requireAuth(request, async (req, user) => {
@@ -163,4 +163,4 @@ export async function POST(request: NextRequest) {
   });
 }
 
-// Job store functions are now imported from @backend/control/job-store
+// Job store functions are now imported from @/lib/backend/control/job-store

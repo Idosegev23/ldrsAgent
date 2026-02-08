@@ -13,13 +13,9 @@ export async function initializeBackend() {
   try {
     console.log('Initializing backend systems...');
     
-    // Initialize agent registry
-    const { initializeAgents } = await import('@backend/execution/agent-registry');
-    await initializeAgents();
-    
-    // Sync agents to database
-    const { syncAgentsRegistry } = await import('@backend/services/agent-monitor');
-    await syncAgentsRegistry();
+    // In serverless mode, initialization is not needed
+    // Agents are statically defined
+    console.log('Using static agent registry (serverless mode)');
     
     initialized = true;
     console.log('Backend systems initialized successfully');

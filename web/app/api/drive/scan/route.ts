@@ -5,7 +5,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { driveScanner } from '@backend/services/drive-scanner';
+import { driveScanner } from '@/lib/backend/services/drive-scanner';
 
 export async function POST(request: NextRequest) {
   try {
